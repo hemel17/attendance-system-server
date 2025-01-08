@@ -1,6 +1,7 @@
+const error = require("../utils/error");
+
 const notFoundHandler = (_req, _res, next) => {
-  const error = new Error("Not found!");
-  error.status = 404;
+  error("Not found", 404);
   next(error);
 };
 
