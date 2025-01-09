@@ -12,7 +12,7 @@ const registerService = async ({ name, email, password }) => {
 
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
-  return createNewUser({ name, email, password: hash });
+  return createNewUser(name, email, hash);
 };
 
 const loginService = async ({ email, password }) => {
