@@ -1,12 +1,12 @@
 const router = require("express").Router();
 
-router.route("/", (_req, res) => {
+router.get("/", (_req, res) => {
   res.status(200).json({
     message: "server is running",
   });
 });
 
-router.route("/health", (req, res) => {
+router.get("/health", (_req, res) => {
   res.status(200).json({
     message: "server health is good",
   });
