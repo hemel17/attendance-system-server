@@ -19,7 +19,15 @@ const getUserById = async (req, res, next) => {
 };
 
 // * get all users
-const getUsers = async (req, res, next) => {};
+const getUsers = async (req, res, next) => {
+  try {
+    const users = userService.findUsers();
+
+    res.status(200).json(users);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // * create a new user by admin
 const postUser = async (req, res, next) => {};
