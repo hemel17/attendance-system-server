@@ -14,8 +14,15 @@ const findUsers = () => {
   return User.find();
 };
 
-const createNewUser = (name, email, password) => {
-  const user = new User({ name, email, password });
+// * post a new user
+const createNewUser = (
+  name,
+  email,
+  password,
+  roles = ["STUDENT"],
+  accountStatus = "PENDING"
+) => {
+  const user = new User({ name, email, password, roles, accountStatus });
   return user.save();
 };
 
