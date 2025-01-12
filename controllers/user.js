@@ -92,7 +92,21 @@ const patchUserById = async (req, res, next) => {
 };
 
 // * delete user
-const deleteUserById = async (req, res, next) => {};
+const deleteUserById = async (req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    const deleteUser = await userService.deleteById(userId);
+
+    if (!deleteUser) {
+      throw error("User not found", 404);
+    }
+
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   getUsers,

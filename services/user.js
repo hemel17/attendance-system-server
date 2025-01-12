@@ -26,4 +26,9 @@ const createNewUser = (
   return user.save();
 };
 
-module.exports = { findUserByProperty, findUsers, createNewUser };
+// * delete single user
+const deleteById = (id) => {
+  return User.findByIdAndDelete(id);
+};
+
+module.exports = { findUserByProperty, findUsers, createNewUser, deleteById };
