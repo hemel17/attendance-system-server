@@ -5,12 +5,10 @@ const userController = require("../controllers/user");
 router.get("/:userId", userController.getUserById);
 
 // * update user
-router.patch("/:userId", userController.patchUser);
-
-router.put("/:userId", userController.putUser);
+router.patch("/:userId", userController.patchUserById);
 
 // * delete user
-router.delete("/:userId", userController.deleteUser);
+router.delete("/:userId", userController.deleteUserById);
 
 // * get all users
 router.get("/", userController.getUsers);
