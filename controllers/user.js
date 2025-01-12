@@ -1,5 +1,22 @@
+const userService = require("../services/user");
+const error = require("../utils/error");
+
 // * get single user
-const getUserById = async (req, res, next) => {};
+const getUserById = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    const user = await userService.findUserByProperty("_id", userId);
+
+    if (!user) {
+      throw error("User not found", 400);
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // * get all users
 const getUsers = async (req, res, next) => {};

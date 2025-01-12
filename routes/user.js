@@ -2,15 +2,15 @@ const router = require("express").Router();
 const userController = require("../controllers/user");
 
 // * get single user
-router.get("/:id", userController.getUserById);
+router.get("/:userId", userController.getUserById);
 
 // * update user
-router.patch("/:id", userController.patchUser);
+router.patch("/:userId", userController.patchUser);
 
-router.put("/:id", userController.putUser);
+router.put("/:userId", userController.putUser);
 
 // * delete user
-router.delete("/:id", userController.deleteUser);
+router.delete("/:userId", userController.deleteUser);
 
 // * get all users
 router.get("/", userController.getUsers);
