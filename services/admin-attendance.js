@@ -9,4 +9,7 @@ const findRunningAttendance = (key, value) => {
   return AdminAttendance.findOne({ [key]: value });
 };
 
-module.exports = { createNewAttendance, findRunningAttendance };
+module.exports = {
+  createNewAttendance,
+  findRunningAttendance,
+};
