@@ -1,5 +1,6 @@
 const adminAttendanceService = require("../services/admin-attendance");
 const error = require("../utils/error");
+const { addMinutes, isAfter } = require("date-fns");
 
 const getEnable = async (_req, res, next) => {
   try {
@@ -19,8 +20,25 @@ const getEnable = async (_req, res, next) => {
   }
 };
 
-const getStatus = async (req, res, next) => {
+const getStatus = async (_req, res, next) => {
   try {
+    const running = await adminAttendanceService.findRunningAttendance(
+      "status",
+      "RUNNING"
+    );
+
+    if (!running) {
+      throw error("No attendance running", 400);
+    }
+
+    const started = addMinutes(new Date(running.createdAt), running.timeLimit);
+
+    if (isAfter(new Date(), started)) {
+      running.status = "COMPLETED";
+      await running.save();
+    }
+
+    res.status(200).json(running);
   } catch (error) {
     next(error);
   }
